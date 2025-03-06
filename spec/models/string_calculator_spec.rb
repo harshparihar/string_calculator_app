@@ -21,5 +21,10 @@ RSpec.describe StringCalculator, type: :model do
       sc = StringCalculator.new(string_number: "//;\n1;2\n3,4")
       expect(sc.add).to eq(10)
     end
+
+    it "returns error message when string numbers contains negative number" do
+      sc = StringCalculator.new(string_number: "//;\n1;-2\n3,-4,5")
+      expect { sc.add }.to raise_error(RuntimeError, "negative numbers not allowed -2, -4")
+    end
   end
 end
