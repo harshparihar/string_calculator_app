@@ -16,5 +16,10 @@ RSpec.describe StringCalculator, type: :model do
       sc = StringCalculator.new(string_number: "1,2\n3")
       expect(sc.add).to eq(6)
     end
+
+    it "returns sum when multiple string numbers with new delimitter passed" do
+      sc = StringCalculator.new(string_number: "//;\n1;2\n3,4")
+      expect(sc.add).to eq(10)
+    end
   end
 end
