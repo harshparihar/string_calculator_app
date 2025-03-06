@@ -1,24 +1,24 @@
 class StringCalculator < ApplicationRecord
 
-  def fetch_new_delimitter
+  def fetch_new_delimitter(string_numbers)
     new_delimitter = nil
-    if string_number.start_with?("//")
-      new_delimitter = string_number[2]
+    if string_numbers.start_with?("//")
+      new_delimitter = string_numbers[2]
     end
     new_delimitter
   end
 
-  def add
-    return 0 if string_number.blank?
+  def add(string_numbers)
+    return 0 if string_numbers.blank?
 
     delimitters = [",", "\n"]
-    new_delimitter = fetch_new_delimitter
+    new_delimitter = fetch_new_delimitter(string_numbers)
     delimitters << new_delimitter if new_delimitter.present?
 
     regex_string = delimitters.join('|')
     regex_pattern = Regexp.new(regex_string)
 
-    number_array = string_number.split(regex_pattern)
+    number_array = string_numbers.split(regex_pattern)
     number_array = number_array.map{|num| num.to_i}
 
     sum = 0
